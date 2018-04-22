@@ -1,6 +1,5 @@
-package test.java;
 
-import main.java.binaryTree;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,39 +8,46 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class binaryTreeTest {
 
     @Test
-    void add_Default_True() {
-        binaryTree<String> myTree= new binaryTree<String>("aaaa", 1);
-        myTree.add("ffff",2);
-        myTree.add("ggg",10);
-        myTree.add("hghg",7);
-        assertEquals(myTree.getRootValue(), "aaaa");
+    void add_addThreeElements_True() {
+        TreeMap treeMap = treeMapFabric();
+        assertEquals(treeMap.size, 3);
 
-        assertEquals(myTree.getSize(), 4);
-    }
-    @Test
-    void search_Default_True() {
-        binaryTree<String> myTree = binaryTreeFabric();
-        String a= myTree.search(myTree.getRoot(), 10);
-        assertEquals(a, "ggg");
     }
 
     @Test
-    void copyConstructor_Default_True(){
-        binaryTree<String> myTree = binaryTreeFabric();
-        binaryTree<String> newTree = new binaryTree<String>(myTree);
-        assertEquals(newTree.getRootValue(), "aaaa");
-        assertEquals(newTree.getSize(), 4);
-        String a= myTree.search(myTree.getRoot(), 10);
-        assertEquals(a, "ggg");
+    void removeElementAt_Default_True() {
+        TreeMap treeMap = treeMapFabric();
+        treeMap.remove(8);
+        assertEquals(treeMap.size, 2);
+
+
+    }
+
+    @Test
+    void removeAll_Remove_True() {
+        TreeMap treeMap = treeMapFabric();
+        treeMap.clear();
+        assertEquals(treeMap.size, 0);
+    }
+
+    @Test
+    void value_EqualsValue_True() {
+        TreeMap treeMap = treeMapFabric();
+        treeMap.get(8);
+        assertEquals(treeMap.get(8), 5);
+        assertEquals(treeMap.get(13), 7);
     }
 
 
-    binaryTree<String> binaryTreeFabric() {
-        binaryTree<String> myTree= new binaryTree<String>("aaaa", 1);
-        myTree.add("ffff",2);
-        myTree.add("ggg",10);
-        myTree.add("hghg",7);
+    private TreeMap<Integer, Integer> treeMapFabric() {
+        TreeMap<Integer, Integer> myTree= new TreeMap<Integer, Integer>();
+        myTree.put(8,5);
+        myTree.put(13,7);
+        myTree.put(1,9);
         return myTree;
     }
+
+   
+    
 
 }
